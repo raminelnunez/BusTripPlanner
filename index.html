@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/705438527d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css"
+      media="all"
+      rel="stylesheet"
+      id="font-awesome-5-kit-css"
+    />
+    <link
+      href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css"
+      media="all"
+      rel="stylesheet"
+      id="font-awesome-5-kit-css"
+    />
+    <link
+      href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css"
+      media="all"
+      rel="stylesheet"
+      id="font-awesome-5-kit-css"
+    />
+    <title>Map / Bus-Route / Weather</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script defer="" src="./js/app.js"></script>
+  </head>
+  <body>
+    
+      
+      <div class="origin-container">
+        <form class="origin-form">
+          <input placeholder="Find a starting location" type="text" />
+        </form>
+  
+        <ul class="origins">
+          <li data-long="-97.19167" data-lat="49.815176" class="selected">
+            <div class="name">Manitoba Institute of Trades and Technology</div>
+            <div>130 Henlow Bay</div>
+          </li>
+          <li data-long="-97.1715329" data-lat="49.9256937">
+            <div class="name">Manitoba Avenue</div>
+            <div>Winnipeg</div>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="destination-container">
+        <form class="destination-form">
+          <input placeholder="Choose your Destination" type="text" />
+        </form>
+  
+        <ul class="destinations">
+          <li data-long="-97.154506" data-lat="49.821786">
+            <div class="name">IGI Bbq and Sushi Bistro</div>
+            <div>1845 Pembina Hwy</div>
+          </li>
+          <li data-long="-97.152205" data-lat="49.890455">
+            <div class="name">Sushi Gen</div>
+            <div>500 Portage Ave.</div>
+          </li>
+          <li data-long="-97.13782" data-lat="49.897657">
+            <div class="name">Blufish</div>
+            <div>179 Bannatyne Ave.</div>
+          </li>
+          <li data-long="-97.150206" data-lat="49.871956" class="selected">
+            <div class="name">Sushi Ya</div>
+            <div>659 Corydon</div>
+          </li>
+          <li data-long="-97.153992" data-lat="49.885416">
+            <div class="name">Wasabi on Broadway</div>
+            <div>588 Broadway Ave.</div>
+          </li>
+          <li data-long="-97.176892" data-lat="49.850975">
+            <div class="name">Wasabi Sabi</div>
+            <div>4-1360 Taylor Avenue</div>
+          </li>
+          <li data-long="-97.170829" data-lat="49.913081">
+            <div class="name">Magic Sushi &amp; Wok</div>
+            <div>272 McPhillips St</div>
+          </li>
+          <li data-long="-97.066106" data-lat="49.898617">
+            <div class="name">Asoyama Sushi</div>
+            <div>2-1575 Regent Ave.</div>
+          </li>
+          <li data-long="-97.158713" data-lat="49.787984">
+            <div class="name">Momo</div>
+            <div>2855 Pembina Hwy</div>
+          </li>
+          <li data-long="-97.157407" data-lat="49.803407">
+            <div class="name">Sushi Jet</div>
+            <div>3-2425 Pembina Hwy.</div>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="button-container">
+        <button class="plan-trip">Plan My Trip</button>
+      </div>
+  
+      <div class="bus-container">
+        <ul class="my-trip">
+          <li>
+            <i class="fas fa-walking" aria-hidden="true"></i>Walk for 15 minutes
+            to stop #61121 - Southbound Dovercourt at Falcon Ridge
+          </li>
+          <li>
+            <i class="fas fa-bus" aria-hidden="true"></i>Ride the Route 650
+            McGillivray for 5 minutes.
+          </li>
+          <li>
+            <i class="fas fa-ticket-alt" aria-hidden="true"></i>Transfer from stop
+            #60208 - Northbound Waverley at Buffalo to stop #60208 - Northbound
+            Waverley at Buffalo
+          </li>
+          <li>
+            <i class="fas fa-bus" aria-hidden="true"></i>Ride the Route 78
+            Waverley for 8 minutes.
+          </li>
+          <li>
+            <i class="fas fa-ticket-alt" aria-hidden="true"></i>Transfer from stop
+            #60307 - Northbound Cambridge at Corydon to stop #60692 - Eastbound
+            Corydon at Cambridge East
+          </li>
+          <li>
+            <i class="fas fa-bus" aria-hidden="true"></i>Ride the Route 18 North
+            Main-Corydon for 6 minutes.
+          </li>
+          <li>
+            <i class="fas fa-walking" aria-hidden="true"></i>Walk for 1 minutes to
+            your destination.
+          </li>
+        </ul>
+        <div class="errors"></div>
+      </div>
+      
+      
+      <div class="weather">
+        <div class="current-conditions"></div>
+        <div class="forecast"></div>
+      </div>
+      
+    <main id="map" class="mapboxgl-map"></main>
+    
+  </body>
+</html>

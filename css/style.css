@@ -1,0 +1,118 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 4fr;
+  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
+}
+
+body > * {
+  padding: 5px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.origins > li, .destinations > li, .error-message{
+  padding: 20px 20px;
+  border: 1px solid #d3d3d3;
+  background-color: #efefef;
+  margin: 5px 0;
+}
+
+.origins > li:hover, .destinations > li:hover{
+  background-color: #efefef;
+  cursor: pointer;
+}
+
+.origins > li.selected, .destinations > li.selected {
+  background-color: #f2f3ff;
+}
+
+input {
+  border: 0;
+  border-bottom: 1px solid #919191;
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+  height: 40px;
+}
+
+input:focus {
+  outline: 0;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.plan-trip {
+  height: 40px;
+  border: 0;
+  background: #4146df;
+  font-size: 17px;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+}
+
+.my-trip {
+  width: 75%;
+  background-color: whitesmoke;
+  padding: 1rem;
+  margin: auto;
+}
+
+.my-trip li {
+  margin: 10px 0px;
+  font-size: 17px;
+  display: flex;
+}
+
+.my-trip i {
+  margin-right: 15px;
+  font-size: 25px;
+  align-self: center;
+}
+
+.trip-planner {
+  width: auto;
+  margin: auto;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.error-message {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+#map {
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.weather {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: seashell 2px solid;
+}
+
+.forecast {
+  display: flex;
+  flex-direction: row;
+}
