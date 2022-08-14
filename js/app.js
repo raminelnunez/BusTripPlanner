@@ -4,23 +4,14 @@ const winnipegTransit = "https://api.winnipegtransit.com/v3/";
 const mapBox = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
 
 const coords = {
-  latitude: undefined,
-  longitude: undefined,
+  latitude: 49.895077,
+  longitude: -97.138451,
 
   get log() {
     console.log(`latitde, longitude`)
     console.log(`${this.latitude}, ${this.longitude}`)
   }
 };
-
-function getLocation() {
-  navigator.geolocation.getCurrentPosition((position) => {
-    coords.latitude = position.coords.latitude;
-    coords.longitude = position.coords.longitude;
-    markerLocation.setLngLat([coords.longitude, coords.latitude]);
-    map.flyTo({ center: [coords.longitude, coords.latitude] });
-  });
-}
 
 const html = {
   originForm: document.getElementsByClassName('origin-form')[0],
@@ -52,9 +43,6 @@ let errors = 0;
 let routes = [];
 
 async function getGeocode (qString) {
-  if (coords.longitude === undefined || coords.latitude === undefined) {
-    error(200);
-  }
   const targetURL =`${mapBox}${qString}.json?types=address&access_token=${token}&proximity=${coords.longitude},${coords.latitude}&types=poi`
   const response = await fetch(targetURL);
   const data = await response.json();
@@ -239,10 +227,6 @@ function render(what) {
 let lat;
 let lon;
 
-//function select previous place
-
-
-
 render('all')
 
 function error(index) {
@@ -252,13 +236,6 @@ function error(index) {
       <hr>
       <h3 class="error-message"> ERROR #${errors}: Please select both starting place and destination </h3>
     `);
-  }
-  if (index === 200) {
-    html.errors.insertAdjacentHTML('afterbegin', `
-      <hr>
-      <h3 class="error-message"> ERROR #${errors}: Please Enable Your Location</h3>
-    `);
-    getLocation();
   }
 
   if (index === 300) {
@@ -290,18 +267,13 @@ mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v11',
-  center: [-0.25, 51.5], //[-97.1384, 49.8951],
+  center: [coords.longitude, coords.latitude],
   zoom: 12,
 });
 
 const markerLocation = new mapboxgl.Marker();
 
-navigator.geolocation.getCurrentPosition((position) => {
-  coords.longitude = position.coords.longitude;
-  coords.latitude = position.coords.latitude;
-
-  markerLocation.setLngLat([coords.longitude, coords.latitude]).addTo(map);
-});
+markerLocation.setLngLat([coords.longitude, coords.latitude]).addTo(map)
 
 const getGeocode2 = async function (qString) {
   const targetUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${qString}.json?access_token=${mapToken}&limit=10&proximity=${coords.longitude},${coords.latitude}&types=poi`;
@@ -319,7 +291,6 @@ const getDistance = function (arr) {
   return distance;
 };
 
-getLocation();
 
 // ------------------------------------------------------------------------------------------------------------------//
 
